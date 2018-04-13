@@ -1,0 +1,385 @@
+html, body
+{
+    background-color: white;
+}
+.navbar .form-inline > .form-group {
+    margin: 0px;
+}
+.navbar .navbar-nav > li > a > span
+{
+    padding-left: .4rem;
+    padding-right: .4rem;
+}
+
+.navbar
+{
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+
+}
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search-md]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 0px !important;
+    text-decoration:none;
+    box-shadow: 0 0 0 0; }
+.form-group.is-focused .form-control {
+    outline: none !important;
+    background-image: linear-gradient(#1cbbe4, #1cbae3), linear-gradient(#D2D2D2, #D2D2D2) !important;
+    background-size: 100% 2px, 100% 1px;
+    box-shadow: none;
+    transition-duration: 0.3s;
+}
+.form-group.is-focused label
+{
+    color: #206d81;
+}
+a:hover
+{
+    background: none !important;
+}
+
+#search-sidenav
+{
+    color: white;
+    padding: 0px;
+    background-image:none;
+    border-bottom: 1px solid white;
+}
+
+#search-sidenav::-webkit-input-placeholder {
+    color: white !important;
+}
+
+#search-sidenav:-moz-placeholder { /* Firefox 18- */
+    color: white !important;
+}
+
+#search-sidenav::-moz-placeholder {  /* Firefox 19+ */
+    color: white !important;
+}
+
+#search-sidenav:-ms-input-placeholder {
+    color: white !important;
+}
+.form-group.is-focused #search-sidenav::-webkit-input-placeholder {
+    color: rgba(225,241,255,0.7) !important;
+}
+
+.form-group.is-focused #search-sidenav:-moz-placeholder { /* Firefox 18- */
+    color: rgba(225,241,255,0.7) !important;
+}
+
+.form-group.is-focused #search-sidenav::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(225,241,255,0.7) !important;
+}
+
+.form-group.is-focused #search-sidenav:-ms-input-placeholder {
+    color: rgba(225,241,255,0.7) !important;
+}
+.form-group.is-focused #search-sidenav
+{
+    background:none !important;
+    border-bottom:1px solid rgba(110,206,255,0.7) !important;
+}
+
+.cool-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.cool-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width .3s;
+}
+
+.cool-link:hover::after {
+    width: 100%;
+    transition: width .3s;
+}
+
+
+
+
+.nav-item-cool
+{
+    padding-right: 10px;
+}
+
+.nav-item-cool .collapsible-body > ul li > a{
+    padding-right: 40px !important;
+}
+.nav-item-cool  > a{
+    padding-right: 20px !important;
+}
+
+#slidenav
+{
+    padding-right: 0px !important;
+}
+
+.nav-item-cool .collapsible-body > ul li a:hover{
+    color: white !important;
+    text-decoration: none !important;
+}
+.nav-item-cool .collapsible-body > ul li:hover
+{
+    background-color: #cf4858;
+}
+.nav-item-cool > a:hover
+{
+    background-color: #cf4858 !important;
+}
+
+.input-form
+{
+    text-align: right;
+}
+.input-form label
+{
+    text-align: right;
+    float: right;
+    left: auto;
+}
+
+.input-form .prefix.active
+{
+    color: rgb(67,194,206);
+}
+.input-form .prefix
+{
+    color: rgba(148,151,149,0.7);
+}
+
+.input-form.is-focused label
+{
+    color: rgb(67,194,206) !important;
+}
+
+.btn-uikit
+{
+    font-size: 30px;
+    display: block;
+    color: black !important;
+    border: 1px solid rgba(106,109,107,0.42);
+    padding: 5px;
+}
+.color-btn
+{
+    color: white !important;
+}
+
+
+.datepicker-jalali {
+    top: 0;
+    left: 0;
+    padding: 4px;
+    margin-top: 1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    min-width: 160px;
+    max-width: 231px;
+}
+
+.datepicker-jalali .datepicker-navigator {
+    padding: 0px 10px 10px 10px;
+    position: relative;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.datepicker-jalali .datepicker-navigator *{
+    cursor: pointer;
+    font-weight: 900;
+}
+.datepicker-jalali .datepicker-navigator .nav-right , .datepicker-jalali .datepicker-navigator .nav-left{
+    position: absolute;
+    top: 0;
+    width: 10%;
+    padding: 3px;
+}
+.datepicker-jalali .datepicker-navigator .nav-right:hover , .datepicker-jalali .datepicker-navigator .nav-left:hover{
+    background: #e8e8e8;
+}
+.datepicker-jalali .datepicker-navigator .nav-right {
+    right: 0;
+}
+.datepicker-jalali .datepicker-navigator .nav-right:hover {
+
+    border-radius: 0px 6px 6px 0px;
+}
+
+.datepicker-jalali .datepicker-navigator .nav-left {
+    left: 0;
+}
+.datepicker-jalali .datepicker-navigator .nav-left:hover {
+    border-radius: 6px 0px 0px 6px;
+}
+
+.datepicker-jalali .datepicker-navigator .nav-content {
+    width: 80%;
+    text-align: center;
+    display: inline-block;
+    margin-left: 10%;
+    padding: 3px;
+}
+.datepicker-jalali .datepicker-navigator .nav-content:hover {
+    background: #e8e8e8;
+    width: 80%;
+    border-radius: 4px;
+    margin-left: 10%;
+}
+.datepicker-jalali * table .select {
+    background: #206d81 !important;
+    color: white !important;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+.datepicker-jalali .datepicker-days,.datepicker-jalali .datepicker-month,.datepicker-jalali .datepicker-years{
+    text-align: center;
+}
+.datepicker-jalali .datepicker-days table,.datepicker-jalali .datepicker-month table,.datepicker-jalali .datepicker-years table{
+    width: 100%;
+}
+.datepicker-jalali .datepicker-month table td,.datepicker-jalali .datepicker-years table td{
+    width: 33%;
+}
+.datepicker-jalali .datepicker-days .day , .datepicker-jalali .datepicker-month .month ,.datepicker-jalali .datepicker-years .year{
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 3px;
+    min-width: 30px;
+    width: 100%;
+    text-align: center;
+    transition: all ease .5s;
+}
+.datepicker-jalali .datepicker-days .day:hover , .datepicker-jalali .datepicker-month .month:hover ,.datepicker-jalali .datepicker-years .year:hover{
+    background: #cf4858 !important;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+.datepicker-jalali .datepicker-days .day.today , .datepicker-jalali .datepicker-month .month.this ,.datepicker-jalali .datepicker-years .year.this{
+    background: #26b8cf;
+    color: white !important;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+.datepicker-jalali .datepicker-days .day.today:hover ,.datepicker-jalali .datepicker-month .month.this:hover ,.datepicker-jalali .datepicker-years .year.this{
+    background: #08789d;
+    color: white !important;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.datepicker-jalali td,
+.datepicker-jalali th {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.datepicker-jalali td {
+    text-align: center;
+}
+.datepicker-jalali .day {
+    font-size: 1em;
+    font-weight: 400;
+    color: #595959;
+    text-align: center !important;
+    border-radius: 50% !important;
+    height: 32px !important;
+    line-height: 29px;
+    width: 32px !important;
+    padding-left: 0px;
+    padding-top: 2px;
+}
+.datepicker-jalali td :hover {
+    cursor: pointer;
+}
+.datepicker-jalali th {
+    font-weight: 500;
+}
+.datepicker-jalali th.today{
+    font-size: 1em;
+}
+.datepicker-jalali .datepicker-days thead:first-child th
+{
+    font-weight: bold;
+}
+
+.icon-law
+{
+    background: none;
+    border: none;
+}
+
+#add-user .input-form label, #add-l .input-form label
+{
+   right: 0px;
+}
+
+#add-user .error, #add-l .error
+{
+    text-align: right;
+    right: 0px;
+    color: #cf4858;
+}
+
+.msg
+{
+    text-align: right;
+    right: 0px;
+    color: #cf4858;
+}
+/*
+#myform .form-group:hover > .btn-uikit
+{
+    color: white !important;
+    border: 1px solid white;
+    background-color: #cf4858;
+}*/
+
+
+.arrow-r
+{
+    text-decoration: none !important;
+}
+
+.filelaw{
+    position: relative;
+}
+.filelaw input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+#add-some-menu label
+{
+    font-size: 22px !important;
+
+}
+#add-some-menu label input
+{
+    margin-right: 0px !important;
+}
+

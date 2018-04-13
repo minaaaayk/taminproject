@@ -1,0 +1,460 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "BNazanin" !important;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: "BNazanin" !important;
+}
+
+@font-face {
+    font-family: 'BNazanin';
+    src:url('fonts/BNazanin.eot?#') format('eot'),
+    url('fonts/BNazanin.woff') format('woff'),
+    url('fonts/BNazanin.ttf') format('truetype');
+}
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575px) /*xs*/
+{
+    html
+    {
+        font-size: 12px;
+    }
+    .txtparallax
+    {
+      padding:10px 20px;
+    }
+    #topnav-search::-webkit-input-placeholder
+    {
+        font-size: 10px;
+    }
+    #topnav-search:-moz-placeholder { /* Firefox 18- */
+        font-size: 10px;
+    }
+
+    #topnav-search::-moz-placeholder {  /* Firefox 19+ */
+        font-size: 10px;
+    }
+
+    #topnav-search:-ms-input-placeholder {
+        font-size: 10px;
+    }
+    #main-content
+    {
+        padding-right: 35px;
+        padding-left: 35px;
+    }
+    .nav-item-cool a
+    {
+        font-size: 14px !important;
+    }
+    .input-form label, .input-form input
+    {
+        margin-right: 38px;
+    }
+    .input-form label
+    {
+        font-size: 14px !important;
+    }
+    .input-form .prefix
+    {
+        font-size: 25px !important;
+    }
+
+    #calmodal .modal-content .datepicker-jalali
+    {
+        width: 220px !important;
+        margin: auto;
+    }
+    #calmodal .modal-content
+    {
+        width: 240px !important;
+        margin: auto !important;
+    }
+    #calmodal .modal-content .modal-body
+    {
+        height:300px !important;
+        width: 240px !important;
+        border-bottom: 1px solid #d3d3d3;
+        padding-right: 3px;
+    }
+    #calmodal .modal-content .modal-footer button
+    {
+        margin-top: 10px !important;
+        margin-bottom: 8px !important;
+    }
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767px) /*sm*/
+{
+    html {
+        font-size: 13px;
+    }
+    .txtparallax
+    {
+        padding:30px 40px;
+    }
+    #topnav-search::-webkit-input-placeholder
+    {
+        font-size: 11px;
+    }
+    #topnav-search:-moz-placeholder { /* Firefox 18- */
+        font-size: 11px;
+    }
+
+    #topnav-search::-moz-placeholder {  /* Firefox 19+ */
+        font-size: 11px;
+    }
+
+    #topnav-search:-ms-input-placeholder {
+        font-size: 11px;
+    }
+    #main-content
+    {
+        padding-right: 45px;
+        padding-left: 50px;
+    }
+    .nav-item-cool a
+    {
+        font-size: 15px !important;
+    }
+    .nav-item > a > span
+    {
+        font-size: 16px !important;
+    }
+    .input-form label, .input-form input
+    {
+        margin-right: 38px;
+    }
+    .input-form label
+    {
+        font-size: 14px !important;
+    }
+    .input-form .prefix
+    {
+        font-size: 25px !important;
+    }
+
+    #calmodal .modal-content .datepicker-jalali
+    {
+        width: 220px !important;
+        margin: auto;
+    }
+    #calmodal .modal-content
+    {
+        width: 250px !important;
+        margin: auto !important;
+    }
+    #calmodal .modal-content .modal-body
+    {
+        height:300px !important;
+        width: 250px !important;
+        border-bottom: 1px solid #d3d3d3;
+        padding-right: 8px;
+    }
+    #calmodal .modal-content .modal-footer button
+    {
+        margin-top: 10px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .cal-btn-column
+    {
+        padding-left: 20px !important;
+        padding-right: 0px !important;
+        padding-top:40px !important;
+    }
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991px) /*md*/
+{
+    html
+    {
+        font-size: 16px;
+    }
+    .txtparallax
+    {
+        padding:40px 70px;
+    }
+
+    .navbar.scrolling-navbar.top-nav-collapse
+    {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    #topnav-search::-webkit-input-placeholder
+    {
+        font-size: 12px;
+    }
+    #topnav-search:-moz-placeholder { /* Firefox 18- */
+        font-size: 12px;
+    }
+
+    #topnav-search::-moz-placeholder {  /* Firefox 19+ */
+        font-size: 12px;
+    }
+
+    #topnav-search:-ms-input-placeholder {
+        font-size: 12px;
+    }
+    #main-content
+    {
+        padding-right: 55px;
+        padding-left: 60px;
+    }
+    .nav-item-cool a
+    {
+        font-size: 15px !important;
+    }
+    .nav-item > a > span
+    {
+        font-size: 16px !important;
+    }
+
+    .input-form label, .input-form input
+    {
+        margin-right: 40px;
+    }
+    .input-form label
+    {
+        font-size: 16px !important;
+    }
+    .input-form .prefix
+    {
+        font-size: 28px !important;
+    }
+
+    #calmodal .modal-content .datepicker-jalali
+    {
+        width: 220px !important;
+        margin: auto;
+    }
+    #calmodal .modal-content
+    {
+        width: 260px !important;
+        margin: auto !important;
+    }
+    #calmodal .modal-content .modal-body
+    {
+        height:300px !important;
+        width: 260px !important;
+        border-bottom: 1px solid #d3d3d3;
+        padding-right: 12px;
+    }
+    #calmodal .modal-content .modal-footer button
+    {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    .cal-btn-column
+    {
+        padding-left: 30px !important;
+        padding-right: 0px !important;
+        padding-top:40px !important;
+    }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199px) /*lg*/
+{
+    html
+    {
+        font-size: 19px;
+    }
+    .txtparallax
+    {
+     padding:50px 80px;
+    }
+
+    .navbar.scrolling-navbar.top-nav-collapse
+    {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .nav-item-cool a
+    {
+        font-size: 17px !important;
+    }
+    .nav-item > a > span
+    {
+        font-size: 18px !important;
+    }
+
+    .input-form label, .input-form input
+    {
+        margin-right: 42px;
+    }
+    .input-form label
+    {
+        font-size: 17px !important;
+    }
+    .input-form .prefix
+    {
+        font-size: 30px !important;
+    }
+
+    #calmodal .modal-content
+    {
+        width: 280px !important;
+        margin: auto !important;
+    }
+    #calmodal .modal-content .modal-body
+    {
+        height:305px !important;
+        width: 280px !important;
+        border-bottom: 1px solid #d3d3d3;
+    }
+    #calmodal .modal-content .modal-footer button
+    {
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .cal-btn-column
+    {
+        padding-left: 50px !important;
+        padding-right: 0px !important;
+        padding-top:60px !important;
+    }
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) /*xl*/
+{
+    html {
+        font-size: 22px;
+    }
+    .txtparallax
+    {
+        padding:60px 90px;
+    }
+    .navbar.scrolling-navbar.top-nav-collapse
+    {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .nav-item-cool a
+    {
+        font-size: 18px !important;
+    }
+    .nav-item > a > span
+    {
+        font-size: 20px !important;
+    }
+    .input-form label, .input-form input
+    {
+        margin-right: 45px;
+    }
+    .input-form label
+    {
+        font-size: 17px !important;
+    }
+    .input-form .prefix
+    {
+        font-size: 35px !important;
+    }
+    #calmodal .modal-content
+    {
+        width: 280px !important;
+        margin: auto !important;
+    }
+    #calmodal .modal-content .modal-body
+    {
+        height:310px !important;
+        width: 280px !important;
+        border-bottom: 1px solid #d3d3d3;
+    }
+    #calmodal .modal-content .modal-footer button
+    {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .cal-btn-column
+    {
+        padding-left: 50px !important;
+        padding-right: 0px !important;
+        padding-top:60px !important;
+    }
+}
+
+@media (min-width: 1470px)
+{
+    #main2
+    {
+        padding-right: 250px !important;
+    }
+}
+/*-------------------------------start page------------------------------------------------------------*/
+.parallax1 {
+    /* The image used */
+    background-image: url('pic/bg01.jpg');
+}
+.parallax2 {
+    /* The image used */
+    background-image: url('pic/3.png');
+}
+.parallax3 {
+    /* The image used */
+    background-image: url('pic/2.jpg');
+}
+.parallax1, .parallax2, .parallax3
+{
+    
+    /* Full height */
+    height: 100%; 
+
+    opacity: 0.8;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax1 {
+    /* The image used */
+    background-image: url('pic/bg01.jpg');
+}
+.parallax2 {
+    /* The image used */
+    background-image: url('pic/3.png');
+}
+.parallax3 {
+    /* The image used */
+    background-image: url('pic/2.jpg');
+}
+
+.exit:hover {
+	background-color: #c43d54;
+}
+
+
+.navbar {
+    background-color: transparent;
+    //box-shadow: none;
+}
+
+.top-nav-collapse {
+    background-color: #0f1722;
+}
+
+@media only screen and (max-width: 992px) {
+    .navbar {
+        background-color: #0f1722;
+    }
+}
+
+.navbar .navbar-nav > li > a
+{
+    padding-top: .3rem;
+    padding-bottom:.3rem;
+}
+
+
