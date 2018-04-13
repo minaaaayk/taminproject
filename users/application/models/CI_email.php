@@ -6,6 +6,8 @@
  * Time: 5:48 PM
  */
 
+
+// this class for send email and retiev?? user password
 class CI_email extends CI_Model
 {
 

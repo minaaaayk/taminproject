@@ -53,7 +53,7 @@ class General extends MY_Controller
         }
         $this->template->load('public/show-law', $this->data);
     }
-
+    // to get all part's and all article's with their paraghrapgh
     /*function pageload($name)
     {
         $parts = $this->law_model->get_all_parts_detail();
