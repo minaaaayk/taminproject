@@ -25,7 +25,7 @@
     <!--Main Layout-->
 <main  dir="ltr" id="main-content">
     <div class="container-fluid mt-5" >
-        <div style="margin: 100px auto;" id="main2" class="box">
+        <div style="margin:auto;" id="main2" class="box">
 
             <?php echo $contents;?>
         </div>

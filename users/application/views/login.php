@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>ورود کاربران</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -77,7 +77,6 @@
         z-index: 3;
     }
 
-
 </style>
 
 <!--Main Navigation-->
@@ -92,14 +91,23 @@
             </button>
             <div class="collapse navbar-collapse float-right" id="navbarSupportedContent-7" style="padding-right: 0px; right: 0px; margin-right: 0px; margin-left: auto;">
                 <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url();?>">
+                            <i class="fa fa-home" >
+                            </i> <span class="clearfix d-none d-sm-inline-block">صفحه اصلی</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <i class="fa fa-search-plus"></i>
+                            </i> <span class="clearfix d-none d-sm-inline-block">جست و جوی پیشرفته</span>
+                        </a>
+                    </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">صفحه اصلی </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">لینک ها</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ورود<span class="sr-only">(current)</span></a>
+                        <a class="nav-link">
+                            <i class="fa fa-sign-in"></i>
+                            </i> <span class="clearfix d-none d-sm-inline-block">ورود<span class="sr-only">(current)</span></span>
+                        </a>
                     </li>
                 </ul>
                 <form class="form-inline" style="margin: 0px; padding: 0px;">

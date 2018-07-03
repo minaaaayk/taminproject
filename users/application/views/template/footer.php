@@ -2,9 +2,11 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="<?php echo base_url();?>includes/bootstrap4.1/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="<?php echo base_url();?>includes/bootstrap4.1/assets/js/vendor/popper.min.js"></script>
+<script src="<?php echo base_url();?>includes/bootstrap4.1/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>includes/bootstrap4.1/assets/js/vendor/holder.min.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
@@ -91,6 +93,38 @@
             });
         });
 
+        $("#add-law-btn").on( "click",function (e)
+        {
+            e.preventDefault();
+            alert("hi");
+            var dataString = $("#add-law-form").serialize();
+            $.ajax({
+                url: "<?php echo base_url();?>users/Employee/add_law_validate",
+                type: 'POST',
+                data:dataString,
+                success: function (res) {
+                    alert(res);
+                },
+                error: function (response) {
+                    alert(response.status);
+                    console.log(response);
+                }
+            });
+            return false;
+        });
+
+
+        $("form .form-control").change(function(){
+           $(this).removeClass("input-error");
+           var id = $(this).attr('id');
+           var errorId = "#" + id + "-error";
+           $(errorId).html("");
+           if(id == "passconf")
+           {
+               checkPasswordMatch();
+           }
+        });
+
         $(".infobtn").on('click',function() {
             $('.infoprogress .progress-bar').css('width', '0');
             $('.prog').css('display', 'block');
@@ -151,6 +185,21 @@
                     $('.dateform').removeClass("is-empty");
                     $(".datelable").addClass("active");
 
+                    setTimeout(function(){
+                        $( "#add-law-form input:checkbox" ).each(function() {
+                            //console.log(this.checked);
+                            if(this.checked == true)
+                            {
+                                var id = $(this).val();
+                                //console.log(id);
+                                var id = "#" + id;
+                                $(id).attr('value',"");
+                                $(id).prop('disabled', true);
+                            }
+                        });
+                    }, 500);
+
+
                 },
                 error: function (e) {
                     alert(e.status);
@@ -175,20 +224,68 @@
                         if(data.ustatus == 1)
                         {
                             $("#usererror").html(data.r_username);
+                            $("#passconf").addClass("input-error");
                         }
-                        if(data.mstatus == 1)
-                        {
+                        else {
+                            $("#username").removeClass("input-error");
+                        }
+                        if(data.mstatus == 1) {
                             $("#mailerror").html(data.r_email);
+                            $("#email").addClass("input-error");
+                        }
+                        else {
+                            $("#email").removeClass("input-error");
                         }
                         if(data.vstatus == 1)
                         {
                             $("#fname-error").html(data.fname);
+                            if(data.fname == "") {
+                                $("#fname").removeClass("input-error");
+                            } else {
+                                $("#fname").addClass("input-error");
+                            }
+                            //-----------------------------------
                             $("#lname-error").html(data.lname);
+                            if(data.lname == "") {
+                                $("#lname").removeClass("input-error");
+                            } else {
+                                $("#lname").addClass("input-error");
+                            }
+                            //-----------------------------------
                             $("#email-error").html(data.emaill);
+                            if(data.emaill == "") {
+                                $("#email").removeClass("input-error");
+                            } else {
+                                $("#email").addClass("input-error");
+                            }
+                            //-----------------------------------
                             $("#username-error").html(data.username);
+                            if(data.username == "") {
+                                $("#username").removeClass("input-error");
+                            } else {
+                                $("#username").addClass("input-error");
+                            }
+                            //-----------------------------------
                             $("#password-error").html(data.password);
+                            if(data.password == "") {
+                                $("#password").removeClass("input-error");
+                            } else {
+                                $("#password").addClass("input-error");
+                            }
+                            //-----------------------------------
                             $("#passconf-error").html(data.passconf);
+                            if(data.passconf == "") {
+                                $("#passconf").removeClass("input-error");
+                            } else {
+                                $("#passconf").addClass("input-error");
+                            }
+                            //-----------------------------------
                             $("#type-error").html(data.type);
+                            if(data.type == "") {
+                                $("#type").removeClass("input-error");
+                            } else {
+                                $("#type").addClass("input-error");
+                            }
                         }
                     }
                     if (data.status == "success")
@@ -205,10 +302,15 @@
         });
 
 
+
         $("input:radio").attr("checked", false);
 
         $('#add-user input:radio').click(function()
         {
+            if($("#type-error").text() != "")
+            {
+
+            }
             if ($(this).val() === '1')
             {
                 if($('#admin').css('display') == 'none')
@@ -282,7 +384,7 @@
             {
                 $(".side-nav.fixed").show();
                 $('.toppadding').css("height","90px");
-                $("#main-content").css("padding-right","250px");
+                $("#main-content").css("padding-right","220px");
             }
 
         });
@@ -305,16 +407,104 @@
 
         $( ".art-tbl" ).each(function() {
             var str = $(this).html();
-            var res = str.substr(0, 40);
+            var res = str.substr(0, 20);
             $(this).html(res + "...");
         });
+
+
 
 
 
     });
     //---end-ready-----------------------------------------------------------------------
 
+    function changeCheckBox(elm)
+    {
+        var id = $(elm).val();
+        var id = "#" + id;
+        if (elm.checked) {
+            $(id).attr('value',"");
+            $(id).prop('disabled', true);
 
+            var errorId = id + "-error";
+            $(errorId).text("");
+            $(id).removeClass("input-error");
+        } else {
+            var input_date = '<?php echo date("Y-m-d", time());?>';
+            var post_data = {
+                'current_date': input_date
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>users/general/convert_to_jalali/",
+                data: post_data,
+                success: function (res) {
+                    // return success
+                    if(res.length>0)
+                    {
+                        var data = jQuery.parseJSON(res);
+                        $(id).prop('disabled', false);
+                        $(id).attr('value',data.date);
+                        CheckDate(id);
+                    }
+                }
+            });
+        }
+    }
+    function CheckDate(elm) {
+        var id = $(elm).attr('id');
+        var id = "#" + id ;
+        var errorId = id + "-error";
+        var error = "";
+        var dateformat = /^(\d{4})\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$/;
+        var Val_date=$(elm).val();
+        if(Val_date.match(dateformat)){
+            var seperator1 = Val_date.split('/');
+            var seperator2 = Val_date.split('-');
+
+            if (seperator1.length>1) {
+                var splitdate = Val_date.split('/');
+            }
+            else if (seperator2.length>1) {
+                var splitdate = Val_date.split('-');
+            }
+            var yy = parseInt(splitdate[0]);
+            var mm  = parseInt(splitdate[1]);
+            var dd = parseInt(splitdate[2]);
+            console.log("day : " + dd);
+            console.log("month : " + mm);
+            console.log("year : " + yy);
+            var ListofDays = [31,31,31,31,31,31,30,30,30,30,30,29];
+            if (mm==1 || mm>2) {
+                if (dd>ListofDays[mm-1]) {
+                    console.log(1);
+                    error = "تاریخ معتبر نمی باشد";
+                }
+            }
+            if (mm==12) {
+                var lyear = false;
+                if (yy%4==3) {
+                    lyear = true;
+                }
+                if ((lyear==false) && (dd>29)) {
+                    console.log(2);
+                    error = "تاریخ معتبر نمی باشد";
+                }
+            }
+        }
+        else
+        {
+            console.log(3);
+            error = "تاریخ معتبر نمی باشد";
+        }
+        $(errorId).text(error);
+        if(error == "") {
+            $(id).removeClass("input-error");
+        } else {
+            $(id).addClass("input-error");
+        }
+    }
     function somsom(elm){
 
         $('.myprogress').css('display', 'block');
@@ -354,11 +544,12 @@
                     // $('#FN').text(duce.filename);
                     $('.file-name-law').val(duce.filename);
                     $('.file-path').val(duce.path);
-
+                    $(".file-name-law").removeClass("input-error");
                 }
                 else
                 {
                     $('.msg').text(duce.errors);
+                    $(".file-name-law").addClass("input-error");
                 }
 
                 //$('#btn').removeAttr('disabled');
@@ -370,10 +561,13 @@
         var password = $("#add-user #password").val();
         var confirmPassword = $("#add-user #passconf").val();
 
-        if (password != confirmPassword)
+        if (password != confirmPassword) {
             $("#add-user #passconf-error").html("با کلمه عبور یکسان نیست");
-        else
+            $("#add-user #passconf").addClass("input-error");
+        } else{
             $("#add-user #passconf-error").html("");
+            $("#add-user #passconf").removeClass("input-error");
+        }
     }
 
     $( window ).on( "load", function()
@@ -401,7 +595,7 @@
         {
             $(".side-nav.fixed").show();
             $('.toppadding').css("height","90px");
-            $("#main-content").css("padding-right","250px",'important');
+            $("#main-content").css("padding-right","220px",'important');
         }
 
         getDate();
@@ -454,8 +648,48 @@
 
 
     });
+    //--- end  page load -----------------------
     // SideNav Initialization
 
+    function add_Law(event){
+        alert("hi");
+        var dataString = $("#add-law-form").serialize();
+        $.ajax({
+            url: "<?php echo base_url();?>users/Employee/add_law_validate",
+            type: 'POST',
+            data:dataString,
+            //async: true,
+            cache: false,
+            success: function (res) {
+                alert(res);
+                var data = jQuery.parseJSON(res);
+                /*if(data.ok == 0) {
+                    $("#title-error").html(data.title);
+                    if(data.title == "") {
+                        $("#title").removeClass("input-error");
+                    } else {
+                        $("#title").addClass("input-error");
+                    }
+                    //-----------------------------------
+                    $("#path-error").html(data.path);
+                    if(data.path == "") {
+                        $(".file-name-law").removeClass("input-error");
+                    } else {
+                        $(".file-name-law").addClass("input-error");
+                    }
+                }
+                else {
+                    alert(data.post);
+                    // window.location.href = data.redirect_url;
+                }*/
+            },
+            error: function (response) {
+                alert(response.status);
+                console.log(response);
+            }
+        });
+        return false;
+    }
 
     $(".button-collapse").on('click',function() {
         /*$(".side-nav.fixed").toggle("slide", {direction: "right" }, 1000);*/
@@ -480,7 +714,8 @@
     $(".dateinput").on( "focusout",function() {
         $('.calbtn').removeClass("uk-button-danger");
         $(".calbtn").addClass("uk-button-default");
-        $(".calicon").css('color', 'rgba(148,151,149,0.7)');
+       // $(".calicon").css('color', 'rgba(148,151,149,0.7)');
+
     });
     /*$("select").on( "focus",function() {
 
@@ -506,7 +741,7 @@
                 if(res.length>0)
                 {
                     var data = jQuery.parseJSON(res);
-                    $('#tasvib-date').attr('value',data.date);
+                    $('.date-shamsi').attr('value',data.date);
                 }
             }
         });
@@ -515,6 +750,8 @@
     $(".collapsible-header").on('click',function () {
         $(this).next().slideToggle( "slow" );
     });
+
+
 
 </script>
 <script type="text/javascript">

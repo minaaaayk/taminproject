@@ -383,3 +383,40 @@ a:hover
     margin-right: 0px !important;
 }
 
+.div-chk-law
+{
+
+    bottom: 15px !important;
+    padding-bottom: 5px !important;
+    margin-bottom: 5px !important;
+    margin-top: auto !important;
+    float: right !important;
+}
+
+.chk-law
+{
+    margin-right: 20px !important;
+    margin-left: auto !important;
+    margin-top: auto !important;
+    float: right !important;
+}
+
+.calicon
+{
+    color: rgba(148,151,149,0.7);
+    font-size: 35px !important;
+    position: absolute;
+}
+.input-error
+{
+    padding-top: 0px !important;
+    outline: none !important;
+    background-image: linear-gradient(#cf4858, #fe7f92), linear-gradient(#D2D2D2, #D2D2D2) !important;
+    background-size: 100% 2px, 100% 1px !important;
+    box-shadow: none !important;
+    transition-duration: 0.3s !important;
+}
+.form-control
+{
+    padding-bottom: 0px !important;
+}

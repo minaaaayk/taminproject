@@ -9,18 +9,16 @@
         </div>
     </div>
     <form action="<?php echo base_url();?>users/Admin/add_user_validate" method="post" id="add-user" dir="rtl">
-        <div class="row">
-            <div class="col-md-2">
+        <div class="row uk-padding uk-padding-remove-bottom">
+            <div class="col-md-3">
                 <p>اطلاعات کاربر</p>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
             </div>
             <div class="col-md-1">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+        <div class="row  justify-content-md-center">
             <div class="col-md-9">
                 <div class="md-form form-group input-form">
                     <i class="fa fa-user-o prefix"></i>
@@ -28,20 +26,14 @@
                     <label for="fname" data-error="wrong" data-success="right" dir="rtl">نام</label>
                 </div>
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9 error" id="fname-error">
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9">
                 <div class="md-form form-group input-form">
                     <i class="fa fa-user prefix"></i>
@@ -49,21 +41,14 @@
                     <label for="lname" data-error="wrong" data-success="right" dir="rtl">نام خانوادگی</label>
                 </div>
             </div>
-            <div class="col-md-1">
+        </div>
+
+        <div class="row  justify-content-md-center">
+            <div class="col-md-9 error" id="lname-error">
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-9 error" id="lname-error">
-            </div>
-            <div class="col-md-1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+        <div class="row  justify-content-md-center">
             <div class="col-md-9">
 
                 <div class="md-form form-group input-form">
@@ -72,31 +57,25 @@
                     <label  lang="en" for="email" data-error="wrong" data-success="right" dir="rtl">ایمیل</label>
                 </div>
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9 error" >
                 <p id="email-error"></p>
                 <p id="mailerror"></p>
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
+
+        <div class="row uk-padding uk-padding-remove-bottom">
+            <div class="col-md-3">
                 <p> حساب کاربری</p>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
             </div>
             <div class="col-md-1">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+        <div class="row  justify-content-md-center">
             <div class="col-md-9">
                 <div class="md-form form-group input-form">
                     <i class="fa fa-address-card prefix"></i>
@@ -104,22 +83,16 @@
                     <label for="username" data-error="wrong" data-success="right" dir="rtl">نام کاربری </label>
                 </div>
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9 error">
                 <p id="username-error"></p>
                 <p id="usererror"></p>
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9">
                 <div class="md-form form-group input-form">
                     <i class="fa fa-lock prefix"></i>
@@ -127,20 +100,14 @@
                     <label for="password" data-error="wrong" data-success="right" dir="rtl">کلمه ی عبور</label>
                 </div>
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9 error" id="password-error">
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9" >
                 <div class="md-form form-group input-form">
                     <i class="fa fa-circle prefix"></i>
@@ -148,19 +115,14 @@
                     <label for="passconf" data-error="wrong" data-success="right" dir="rtl">تکرار کلمه ی عبور</label>
                 </div>
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
+
+        <div class="row  justify-content-md-center">
             <div class="col-md-9 error" id="passconf-error">
             </div>
-            <div class="col-md-1">
-            </div>
         </div>
-        <div class="row" dir="rtl">
-            <div class="col-md-2">
+        <div class="row uk-padding uk-padding-remove-bottom">
+            <div class="col-md-3">
                 <p> سطح دسترسی</p>
             </div>
             <div class="col-md-9">
@@ -168,62 +130,58 @@
             <div class="col-md-1">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-9">
 
+        <div class="row  justify-content-md-center">
+            <div class="col-md-10">
                 <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid input-form uk-margin-top uk-margin-bottom" style=" float: right;" >
                     <i class="fa  fa-user-circle-o prefix"></i>
-                    <label for="password2" data-error="wrong" data-success="right">نوع کاربر</label>
-                    <label  style="margin-right: 10px !important;">
-                        <input style="margin-right: 10px !important;"  class="uk-radio" type="radio" name="type" value="1" data-toggle="collapse" data-target="#admin" aria-expanded="true" aria-controls="admin"> مدیر
-                    </label>
-                    <label  style="margin-right: 10px !important;">
-                        <input style="margin-right: 10px !important;" class="uk-radio" type="radio" name="type" value="2" data-toggle="collapse" data-target="#employee" aria-expanded="false" aria-controls="employee"> کارمند سازمان
-                    </label>
-                    <label  style="margin-right: 10px !important;">
-                        <input style="margin-right: 10px !important;"  class="uk-radio" type="radio" name="type" value="3" data-toggle="collapse" data-target="#expert" aria-expanded="false" aria-controls="expert"> کارشناس حقوقی
-                    </label>
+                    <label for="password2" data-error="wrong" data-success="right">نوع کاربر : </label>
                 </div>
-            </div>
-            <div class="col-md-1">
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-9 error" id="type-error">
-            </div>
-            <div class="col-md-1">
+        <div class="row  justify-content-md-center uk-padding uk-padding-remove-left uk-padding-remove-right uk-padding-remove-top">
+            <div class="col-md-9 uk-margin uk-grid-small uk-child-width-auto uk-grid input-form uk-margin-top uk-margin-bottom ">
+                <label  style="margin-right: 10px !important;">
+                    <input style="margin-right: 10px !important;"  class="uk-radio" type="radio" name="type" value="1" data-toggle="collapse" data-target="#admin" aria-expanded="true" aria-controls="admin"> مدیر
+                </label>
+                <label  style="margin-right: 10px !important;">
+                    <input style="margin-right: 10px !important;" class="uk-radio" type="radio" name="type" value="2" data-toggle="collapse" data-target="#employee" aria-expanded="false" aria-controls="employee"> کارمند سازمان
+                </label>
+                <label  style="margin-right: 10px !important;">
+                    <input style="margin-right: 10px !important;"  class="uk-radio" type="radio" name="type" value="3" data-toggle="collapse" data-target="#expert" aria-expanded="false" aria-controls="expert"> کارشناس حقوقی
+                </label>
             </div>
         </div>
-        <div class="row" style="text-align: right;">
-            <div class="col-md-2">
+
+        <div class="row  justify-content-md-center">
+            <div class="col-md-9 error" id="type-error">
             </div>
+        </div>
+
+        <div class="row  justify-content-md-center uk-padding uk-padding-remove-left uk-padding-remove-right uk-padding-remove-top" style="text-align: right;">
             <div class="col-md-9">
 
                 <div class="collapse" id="admin">
                     <p>دسترسی های مدیر:</p>
                     <div class="">
                         <p>
-                            <input class="uk-checkbox" type="checkbox" name="access[]" value="11"> مدیرت کاربران(افزودن کاربر, کنترل دسترسی و...)
+                            <input class="uk-checkbox uk-margin-small-left" type="checkbox" name="access[]" value="11"> مدیرت کاربران(افزودن کاربر, کنترل دسترسی و...)
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input class="uk-checkbox" type="checkbox" name="access[]" value="12"> مدیرت فروم ها (ایجاد یا حذف آنها)
+                            <input class="uk-checkbox  uk-margin-small-left" type="checkbox" name="access[]" value="12"> مدیرت فروم ها (ایجاد یا حذف آنها)
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input class="uk-checkbox" type="checkbox" name="access[]" value="13"> مشاهده ی log ها
+                            <input class="uk-checkbox  uk-margin-small-left" type="checkbox" name="access[]" value="13"> مشاهده ی log ها
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="19">مشاهده توشیحات
+                            <input type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="19">مشاهده توشیحات
                         </p>
                     </div>
                 </div>
@@ -231,17 +189,17 @@
                     <p>دسترسی های کارمند:</p>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="24">مدیریت قوانین (افزودن و حذف قانون - اصلاحیه و...)
+                            <input type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="24">مدیریت قوانین (افزودن و حذف قانون - اصلاحیه و...)
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="25">دریافت صورت جلسه
+                            <input  type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="25">دریافت صورت جلسه
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="29">مشاهده توشیحات
+                            <input  type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="29">مشاهده توشیحات
                         </p>
                     </div>
                 </div>
@@ -249,27 +207,25 @@
                     <p>دسترسی های کارشناس:</p>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="34">مدیریت قوانین (افزودن و حذف قانون - اصلاحیه و...)
+                            <input  type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="34">مدیریت قوانین (افزودن و حذف قانون - اصلاحیه و...)
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="36">حاشیه نویسی
+                            <input  type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="36">حاشیه نویسی
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="37">نظر دادن در فروم ها
+                            <input  type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="37">نظر دادن در فروم ها
                         </p>
                     </div>
                     <div class="">
                         <p>
-                            <input type="checkbox" class="uk-checkbox" name="access[]" value="38">مرتبط سازی موضوعات
+                            <input  type="checkbox" class="uk-checkbox  uk-margin-small-left" name="access[]" value="38">مرتبط سازی موضوعات
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-1">
             </div>
         </div>
         <!--captcha-->

@@ -73,7 +73,16 @@ class CI_menu  extends CI_Model
         $all_menu = $this->db->get();
         foreach ($all_menu->result() as $r)
         {
-            $menus[]=$this->fill_temp($r);
+            if(isset($r->parent_id))
+            {
+                $t = $this->fill_temp($r);
+                $t['parent_id'] = $r->parent_id;
+                $submenus[] = $t;
+            }
+            else
+            {
+                $menus[]=$this->fill_temp($r);
+            }
         }
         $menus2 = array();
         foreach($menus as $menu)

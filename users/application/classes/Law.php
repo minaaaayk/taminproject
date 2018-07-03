@@ -14,6 +14,8 @@ class Law
     public $Date_tasvib;
     public $Date_eblagh;
     public $Date_enteshar;
+    public $Date_emza;
+    public $Date_taeid;
     public $status;
     public $count_part;
     public $array_of_part = array();
