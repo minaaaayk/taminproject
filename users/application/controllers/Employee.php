@@ -60,18 +60,70 @@ class Employee extends MY_Controller
         }
         else
         {
-            $law1 = new Law();
-            $law1->title = $this->input->post('title');
-            $law1->Date_tasvib = $this->input->post('tasvib-date');
-            $law1->type = $this->input->post('type');
-            $law1->id_marja_tasvib = $this->input->post('marja');
-            $law1->status = $this->input->post('statuss');
-            $file = $this->input->post('path');
 
-            $law1->array_of_part = $this->parser_model->pars_law($file);
+            $result['ok'] = 0;
+            $this->form_validation->set_rules('title', 'عنوان', 'trim|required');
+            $this->form_validation->set_rules('path', 'فایل', 'trim|required');
+            // Set Custom messages
+            $this->form_validation->set_message('required', '%s نمیتواند خالی باشد.');
 
-            $law1->count_part = count($law1->array_of_part);
-            /* $this->law_model->insert_part_law($parts);*/
+            $t =  var_dump($_POST);
+            echo $t;
+            exit();
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $result['title'] = form_error("title");
+                $result['path'] = form_error("path");
+            }
+            else
+            {
+                $dates = array(
+                    'tasvib-date'=>"",
+                    'eblagh-date' => "",
+                    'enteshar-date' => "",
+                    'emza-date' => "",
+                    'taeid-date' => ""
+                );
+                foreach ($this->input->post('check1') as $check)
+                {
+                    $dates[$check] = null;
+                }
+                foreach ($dates as $key => $item)
+                {
+                    if( $dates[$key]  !== null)
+                    {
+                        $dates[$key] = str_replace('/','-', $this->input->post($key));
+                    }
+                }
+
+                $law1 = new Law();
+
+                $law1->Date_tasvib = $dates['tasvib-date'];
+                $law1->Date_eblagh = $dates['eblagh-date'];
+                $law1->Date_enteshar = $dates['enteshar-date'];
+                $law1->Date_emza = $dates['emza-date'];
+                $law1->Date_taeid = $dates['taeid-date'];
+
+                $law1->title = $this->input->post('title');
+                $law1->type = $this->input->post('type');
+                $law1->id_marja_tasvib = $this->input->post('marja');
+                $law1->status = $this->input->post('statuss');
+
+                $file = $this->input->post('path');
+                $result['ok'] = 1;
+                $result['post'] = var_dump($law1);
+
+                /* $law1->array_of_part = $this->parser_model->pars_law($file);
+
+                 $law1->count_part = count($law1->array_of_part);*/
+                /* $this->law_model->insert_part_law($parts);*/
+            }
+           /* $this->output->set_content_type('application/json');
+            $this->output->set_output(json_encode($result));
+            $string = $this->output->get_output();
+            echo $string;*/
+            exit();
         }
 
 
@@ -95,7 +147,7 @@ class Employee extends MY_Controller
         }
 
     }
-    function add_correctness()
+    function add_circulars()
     {
 
         if (!in_array(4, $this->access))
@@ -104,7 +156,7 @@ class Employee extends MY_Controller
         }
         else
         {
-            $theHTMLResponse=  $this->load->view('employee/add-correctness','',true);
+            $theHTMLResponse=  $this->load->view('employee/add-circulars','',true);
             $result['theHTMLResponse'] = $theHTMLResponse;
             $this->output->set_content_type('application/json');
             $this->output->set_output(json_encode($result));

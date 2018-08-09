@@ -62,7 +62,10 @@
         <!-- Breadcrumb-->
         <ul class="nav navbar-nav nav-flex-icons ml-auto" style="margin-top: 0px;">
             <li class="nav-item">
-                <a class="nav-link"><i class="fa fa-home"></i> <span class="clearfix d-none d-sm-inline-block">صفحه اصلی</span></a>
+                <a class="nav-link" href="<?php echo base_url();?>" >
+                    <i class="fa fa-home"></i>
+                    <span class="clearfix d-none d-sm-inline-block">صفحه اصلی</span>
+                </a>
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link"><i class="fa fa-comments-o"></i> <span class="clearfix d-none d-sm-inline-block">ارتباط با ما</span></a>

@@ -15,7 +15,7 @@
       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
       <!-- Custom styles for this template -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,7 +33,18 @@
       <link rel="stylesheet" href="<?php echo base_url();?>includes/custom/css/style.css">
   </head>
 
+  <style>
+      .Blink {
+          animation: blinker 0.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+      }
+
+      @keyframes blinker {
+          from { opacity: 1; }
+          to { opacity: 0; }
+      }
+  </style>
   <body>
+
 
   <!--Main Navigation-->
   <header>
@@ -46,15 +57,26 @@
                   <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse float-right" id="navbarSupportedContent-7" style="padding-right: 0px; right: 0px; margin-right: 0px; margin-left: auto;">
+
+
                   <ul class="navbar-nav">
                       <li class="nav-item active">
-                          <a class="nav-link" href="#">صفحه اصلی <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="<?php echo base_url();?>">
+                              <i class="fa fa-home" >
+                              </i> <span class="clearfix d-none d-sm-inline-block">صفحه اصلی <span class="sr-only">(current)</span></span>
+                          </a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">لینک ها</a>
+                          <a class="nav-link">
+                              <i class="fa fa-search-plus"></i>
+                              </i> <span class="clearfix d-none d-sm-inline-block">جست و جوی پیشرفته</span>
+                          </a>
                       </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="<?php echo base_url();?>users/">ورود</a>
+                      <li class="nav-item ">
+                          <a class="nav-link" href="<?php echo base_url();?>users/login">
+                              <i class="fa fa-sign-in"></i>
+                              </i> <span class="clearfix d-none d-sm-inline-block">ورود</span>
+                          </a>
                       </li>
                   </ul>
                   <form class="form-inline">
@@ -79,7 +101,7 @@
     </div>
     <!--<div class="uk-position-bottom uk-overlay uk-overlay-default uk-text-center">-->
     <div class="uk-position-bottom uk-text-center">
-        <a href="#STE" uk-scroll="duration:1000" uk-icon="icon: chevron-down; ratio: 3.5" style="color: white;"></a>
+        <a href="#STE" uk-scroll="duration:1000" class="Blink" uk-icon="icon: chevron-down; ratio: 3.5" style="color: white;"></a>
     </div>
 
     <div class="txtparallax" style="position:relative; min-height: 800px;" dir="rtl" id="STE">
@@ -174,11 +196,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
     <!-- Holder.js for placeholder images -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>

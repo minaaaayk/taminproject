@@ -21,7 +21,8 @@ class Login extends  CI_Controller
         if($this->check_login())
         {
             $user_id =  $this->CI_auth->logged_id();
-            $tempmenu = $this->CI_menu->get_sidebar_menu($user_id);
+            $access = $this->CI_menu->get_user_access($user_id);
+            $tempmenu = $this->CI_menu->get_sidebar_menu($access);
             $sub_data['menus'] = $tempmenu['menus'];
             $sub_data['submenus'] = $tempmenu['submenus'];
             $sub_data['fname_lname'] = $this->CI_menu->get_top_menu_name($user_id);
