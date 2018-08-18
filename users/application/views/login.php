@@ -120,16 +120,59 @@
 
 </header>
 <!--Main Navigation-->
+
+<!--Modal Form Login with Avatar Demo-->
+<div class="modal fade" id="forgorPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <img src="<?php echo base_url();?>includes/pic/avatar4.png" class="rounded-circle img-responsive" alt="Avatar photo">
+            </div>
+            <!--Body-->
+            <div class="modal-body text-center mb-1" style="" id="step1" >
+
+                <h5 class="mt-1 mb-2">فراموشی رمز عبور</h5>
+
+                <div class="md-form ml-0 mr-0">
+                    <input type="email" name="forgotmail" id="form1" class="form-control ml-0" dir="ltr">
+                    <label for="form1" class="ml-0" style="right: 0px !important; margin-right: 0px !important; margin-left: auto !important; padding-right: 0px !important;">ایمیل</label>
+                    <div class="error-forgot"></div>
+                    <div uk-spinner style="color: #2f6f9f; display: none;" id="spinner"></div>
+                </div>
+                <div class="text-center">
+                    <button class="uk-button uk-button-primary uk-align-center uk-width-1-2 uk-margin-small-bottom" id="fogot-btn">ارسال <i class="fa fa-envelope ml-1"></i></button>
+                    <button class="uk-button  uk-width-1-2 uk-align-center" data-dismiss="modal">انصراف <i class="fa fa-times-circle ml-1"></i></button>
+                </div>
+            </div>
+
+            <div class="modal-body text-center mb-1" style="display: none;" id="step2">
+
+                <p class="mt-1 mb-2">یک پیام حاوی لینک فعال سازی به ایمیل شما ارسال شد</p>
+
+                <div class="text-center">
+                    <button class="uk-button  uk-button-primary uk-width-1-2 uk-align-center" data-dismiss="modal">خروج</button>
+                </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal Form Login with Avatar Demo-->
+
+
+
 <!-- container -->
 <div class="wrapper" dir="ltr">
     <div class="text-wrapper">
         <div class="cover-body">
             <div class="cover-body-inner">
 
-                <div class="cover-description">
+                <div class="cover-description" dir="rtl" >
 
 
-                    <form id="login-form" class="uk-form-stacked" dir="rtl" action="<?php echo base_url();?>users/login/auth" method="post" autocomplete="new-password">
+                    <form id="login-form" class="uk-form-stacked" dir="rtl" method="post" autocomplete="new-password">
 
                         <div class="uk-margin">
                             <div class="uk-inline">
@@ -147,8 +190,8 @@
                         </div>
                         <label><input class="uk-checkbox w3-margin " name="remember" id="remember" value="1" checked type="checkbox">مرا بخاطر بسپار</label>
                         <button type="submit" name="submit" value="login" id="login" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom">ورود</button>
-                        <button  name="forgot" value="forgot" class="uk-button uk-button-default uk-width-1-1 " style="color: white;">رمز عبور را فراموش کردم</button>
                     </form>
+                    <button id="forgot" name="forgot" value="forgot" class="uk-button uk-button-default uk-width-1-1 "  data-toggle="modal" data-target="#forgorPass" style="color: white;">رمز عبور را فراموش کردم</button>
                 </div>
                 <div class="cover-actions"> </div>
                 <div id="login-errors" style="text-align: right; color: white;" dir="rtl"></div>
@@ -221,7 +264,6 @@
 
     $(document).ready(function() {
 
-
         $("#login").on('click',function() {
             var dataString = $("#login-form").serialize();
             $.ajax({
@@ -240,6 +282,7 @@
                         window.location.href = data.redirect_url;
                     }
 
+
                 },
                 error: function (response) {
                     alert(response.status);
@@ -247,6 +290,41 @@
             });
             return false;
         });
+
+        $("#fogot-btn").on('click',function() {
+            var	forgotMail =$('input[name=forgotmail]').val();
+            $("#spinner").css('display','block');
+            $.ajax({
+                url: "<?php echo base_url();?>users/index.php/Login/forgot",
+                type: "POST",
+                data: {"forgotmail" : forgotMail},
+                success: function (res) {
+                    //alert(res);
+                    var data = jQuery.parseJSON(res);
+                    if(data.status == "error")
+                    {
+                        $("#forgorPass .error-forgot").html(data.message);
+                    }
+                    if (data.status == "success")
+                    {
+                        $("#step1").css('display','none');
+                        $("#step2").css('display','block');
+
+                    }
+                    $("#spinner").css('display','none');
+                },
+                error: function (response) {
+                    $("#forgorPass .error-forgot").html("اتصال خود را به اینترنت چک کنید");
+                    $("#spinner").css('display','none');
+                }
+            });
+            return false;
+        });
+
+        $("#form1").change(function(){
+            $("#forgorPass .error-forgot").html("");
+        });
+
       adjustCoverImage();
       $(".uk-button").width( $(".uk-input").width() - 10);
       $(".uk-button").css("display", "block");

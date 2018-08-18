@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6
 {
     html
     {
-        font-size: 12px;
+        font-size: 1rem;
     }
     .txtparallax
     {
@@ -30,18 +30,18 @@ h1, h2, h3, h4, h5, h6
     }
     #topnav-search::-webkit-input-placeholder
     {
-        font-size: 10px;
+        font-size: 1rem;
     }
     #topnav-search:-moz-placeholder { /* Firefox 18- */
-        font-size: 10px;
+        font-size: 1rem;
     }
 
     #topnav-search::-moz-placeholder {  /* Firefox 19+ */
-        font-size: 10px;
+        font-size: 1rem;
     }
 
     #topnav-search:-ms-input-placeholder {
-        font-size: 10px;
+        font-size: 1rem;
     }
     #main-content
     {
@@ -258,6 +258,11 @@ h1, h2, h3, h4, h5, h6
         padding-right: 0px !important;
         padding-top:40px !important;
     }
+    #forgorPass .modal-dialog
+    {
+        min-width: 380px !important;
+
+    }
 }
 
 /*Large devices (desktops, 992px and up)*/
@@ -321,6 +326,15 @@ h1, h2, h3, h4, h5, h6
         padding-left: 50px !important;
         padding-right: 0px !important;
         padding-top:60px !important;
+    }
+    #forgorPass .modal-header
+    {
+        margin: -5rem 0 -1rem !important;
+    }
+    #forgorPass .modal-dialog
+    {
+        min-width: 400px !important;
+
     }
 }
 
@@ -386,6 +400,14 @@ h1, h2, h3, h4, h5, h6
     {
         font-size: 20px !important;
     }
+    #forgorPass .modal-header
+    {
+        margin: -5rem 0 -1rem !important;
+    }
+    #forgorPass .modal-dialog
+    {
+        min-width: 450px !important;
+    }
 }
 
 @media (min-width: 1470px)
@@ -394,6 +416,7 @@ h1, h2, h3, h4, h5, h6
     {
         padding-right: 70px !important;
     }
+
 
 
 }
@@ -463,4 +486,119 @@ h1, h2, h3, h4, h5, h6
     padding-bottom:.3rem;
 }
 
+#forgorPass label{
+    position: absolute;
+    top: .65rem;
+    left: 0;
+    -webkit-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+    transition: .2s ease-out;
+    cursor: text;
+    color: #757575;
+    font-size: .8rem !important;
+}
+#part2 label{
+    position: absolute;
+    top: .65rem;
+    right: 0 !important;
+    text-align: right !important;
+    -webkit-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+    transition: .2s ease-out;
+    cursor: text;
+    color: #757575;
+    font-size: .8rem !important;
+}
+#forgorPass .is-focused + label,#part2 .is-focused + label
+{
+    -webkit-transform: translateY(-120%) !important;
+    -ms-transform: translateY(-120%) !important;
+    transform: translateY(-120%) !important;
+}
+#forgorPass .is-focused + label,#part2 .is-focused + label
+{
+    color: #0f7ae5 !important;
+    font-size: .7rem !important;
+}
+
+#forgorPass input[type="email"]:focus:not([readonly]), #part2 input[type="password"]:focus:not([readonly])
+{
+    -webkit-box-shadow: 0 1px 0 0 #0f7ae5 !important;
+    box-shadow:  0 1px 0 0 #0f7ae5 !important;
+    border-bottom:  1px #0f7ae5 !important;;
+}
+
+#forgorPass .is-focused .form-control
+{
+    background-image: none !important;
+}
+#forgorPass .error-forgot, #part2 .error-pass
+{
+    text-align: center;
+    color: #c43d54;
+}
+#forgorPass :not(.is-focused):not(.is-empty) + label,#part2 :not(.is-focused):not(.is-empty) + label
+{
+    content: "";
+    position: absolute;
+   top :-20%;
+    display: block;
+    -webkit-transition: 0.5s opacity ease-out, 0.5s color ease-out;
+    -o-transition: 0.5s opacity ease-out, 0.5s color ease-out;
+    transition: 0.5s opacity ease-out, 0.5s color ease-out;
+    font-size: .75rem !important;
+}
+.ml-0, .mx-0 {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+#forgorPass
+{
+    background-color: rgba(0,0,0,0.5); ;
+}
+
+#forgorPass input[type="email"]{
+    -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out !important;
+    transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out !important;
+    -o-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out !important;
+    outline: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none;
+    border: none;
+    border-bottom-color: currentcolor !important;
+    border-bottom-style: none !important;
+    border-bottom-width: medium !important;
+    border-bottom: 1px solid #ced4da;
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+    -webkit-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+    background-color: transparent !important;
+    font-size: 0.9rem !important;
+    height: 36px !important;
+    padding-bottom: 0px !important;
+}
+#part2 input[type="password"]
+{
+    webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -o-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    background-color: transparent;
+    padding-bottom: 0px !important;
+
+}
 

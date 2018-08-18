@@ -123,6 +123,14 @@
            {
                checkPasswordMatch();
            }
+            if(id == "username")
+            {
+                $("#usererror").html("");
+            }
+            if(id == "email")
+            {
+                $("#mailerror").html("");
+            }
         });
 
         $(".infobtn").on('click',function() {
@@ -253,14 +261,14 @@
                             }
                             //-----------------------------------
                             $("#email-error").html(data.emaill);
-                            if(data.emaill == "") {
+                            if((data.emaill == "") && (data.mstatus != 1)) {
                                 $("#email").removeClass("input-error");
                             } else {
                                 $("#email").addClass("input-error");
                             }
                             //-----------------------------------
                             $("#username-error").html(data.username);
-                            if(data.username == "") {
+                            if((data.username == "") && (data.ustatus != 1)) {
                                 $("#username").removeClass("input-error");
                             } else {
                                 $("#username").addClass("input-error");
