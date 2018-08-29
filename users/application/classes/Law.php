@@ -13,6 +13,7 @@ class Law
     public $id_marja_tasvib;
     public $Date_tasvib;
     public $Date_eblagh;
+    public $num_eblagh;
     public $Date_enteshar;
     public $Date_emza;
     public $Date_taeid;

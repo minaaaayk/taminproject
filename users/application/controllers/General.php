@@ -20,16 +20,70 @@ class General extends MY_Controller
     }
     function show_law()
     {
+        $laws = $this->law_model->gett_all_laws();
+        $this->data['laws']=$laws;
+        if (in_array(4, $this->access)) {
+            $this->data['manipulate'] = true;
+        } else {
+            $this->data['manipulate'] = false;
+        }
+        $this->load->library('pagination');
+        //$config['base_url'] = base_url('http://127.0.0.1/');
+
+        $config['per_page'] = ($this->input->get('limitRows')) ? $this->input->get('limitRows') : 10;
+        $config['enable_query_strings'] = TRUE;
+        $config['page_query_string'] = TRUE;
+        $config['reuse_query_string'] = TRUE;
+
+
+        // integrate bootstrap pagination
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = 'قبلی';
+        $config['prev_tag_open'] = '<li class="prev">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = 'بعذی';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="'.base_url().'?per_page=0">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $this->data['page'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        $this->data['searchFor'] = ($this->input->get('query')) ? $this->input->get('query') : NULL;
+        $this->data['orderField'] = ($this->input->get('orderField')) ? $this->input->get('orderField') : '';
+        $this->data['orderDirection'] = ($this->input->get('orderDirection')) ? $this->input->get('orderDirection') : '';
+        $this->data['lawList'] = $this->law_model->get_law_table($config["per_page"], $this->data['page'], $this->data['searchFor'], $this->data['orderField'], $this->data['orderDirection']);
+        $config['total_rows'] = $this->law_model->count_law_table( $this->data['searchFor'], $this->data['orderField'], $this->data['orderDirection']);
+        $this->pagination->initialize($config);
+        $this->data['pagination'] = $this->pagination->create_links();
+
+        $this->template->load('public/show-all-laws', $this->data);
+    }
+    // to get all part's and all article's with their paraghrapgh
+    /*function pageload($name)
+    {
+        $parts = $this->law_model->get_all_parts_detail();
+        $data['parts']=$parts;
+        $this->load->view($name,$data);
+    }*/
+
+    function show_one_law()
+    {
+
         $parts = $this->law_model->get_all_parts_detail();
         $this->data['parts']=$parts;
 
         //---------access for manipulate law's----------------------
-        if (in_array(4, $this->access))
-        {
+        if (in_array(4, $this->access)) {
             $this->data['manipulate'] = true;
-        }
-        else
-        {
+        } else {
             $this->data['manipulate'] = false;
         }
 
@@ -38,8 +92,7 @@ class General extends MY_Controller
         {
             $this->data['commenting'] = true;
             $this->data['see_comment'] = true;
-        }
-        else
+        } else
         {
             $this->data['commenting'] = false;
             if (in_array(9, $this->access))// for seeing comment's
@@ -52,14 +105,8 @@ class General extends MY_Controller
             }
         }
         $this->template->load('public/show-law', $this->data);
+
     }
-    // to get all part's and all article's with their paraghrapgh
-    /*function pageload($name)
-    {
-        $parts = $this->law_model->get_all_parts_detail();
-        $data['parts']=$parts;
-        $this->load->view($name,$data);
-    }*/
     function convert_to_jalali()
     {
         $current_date= $this->input->post('current_date');

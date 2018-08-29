@@ -1,7 +1,7 @@
 
-<table dir="rtl" style="text-align: right;" class="uk-padding uk-margin table  table-hover table-responsive">
+<table id="law-sh" dir="rtl" style="text-align: right;" class="uk-card uk-card-default uk-table-middle uk-padding uk-margin table  table-hover table-responsive table-hover">
     <thead>
-    <tr>
+    <tr  style='width: 100%;'>
         <th></th>
         <th style="text-align: center">مشاهده</th>
 

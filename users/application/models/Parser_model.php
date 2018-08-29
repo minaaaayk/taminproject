@@ -23,16 +23,13 @@ class Parser_model extends CI_Model
         return  $launch;
     }
     //function ShowFile($file)
-    function pars_law($file)
+    function pars_law($file,$parentType="")
     {
         $alphabet = 'الف ب پ ت ث ج چ ح خ د ذ ر ز ژ ص ض ط ظ ع غ ف ق ک گ ل م ن و ه ی';
         $abjad = explode(' ', $alphabet);
         //$file = "F:/program10/VertrigoServ/www/php_for_project/CodeIgniterTest/testupload/documents/2017-11-29-05-26-00pm-taminejtemaee.docx";
         //$file = "F:/program10/VertrigoServ/www/php_for_project/CodeIgniterTest/testupload/documents/2017-11-29-02-21-46pm-test.docx";
         //$file = "F:/program10/VertrigoServ/www/php_for_project/CodeIgniterTest/testupload/documents/mina.docx";
-
-        $law1 = new Law();
-
 
         //var_dump($_POST);
         //var_dump($file);
@@ -43,6 +40,7 @@ class Parser_model extends CI_Model
 
         $parts = array(); //array of parts
         $prt = new Part();
+        $prt->parent = $parentType;
         $part_index = 0;
 
         $Articles = array(); //array of article in a part
@@ -86,7 +84,7 @@ class Parser_model extends CI_Model
             if(isset($line) && ($line != ""))
             {
                 $words = $this->Find4FirstWord($line);
-                var_dump($words);
+                //var_dump($words);
                 if (isset($words[0]))
                 {
                     if ($words[0] == "مبحث")
@@ -178,6 +176,7 @@ class Parser_model extends CI_Model
                             $Note_index = 0;
                         }
                         $prt = new Part();
+                        $prt->parent = $parentType;
                         $Articles = Array();
                         //echo "new part..."."</br>";
                         $prt->type_part = $words[0];
@@ -193,7 +192,7 @@ class Parser_model extends CI_Model
                             }
                             else
                             {
-                                echo "errrrrrrrrorrrrr"."</br>";
+                                //echo "errrrrrrrrorrrrr"."</br>";
                             }
 
                             $p = strpos($line,"ماده");
@@ -336,7 +335,7 @@ class Parser_model extends CI_Model
                         {
                             if ($Note_index != $words[1])
                             {
-                                echo "errrrrrrrrorrrrr" . "</br>";
+                                //echo "errrrrrrrrorrrrr" . "</br>";
                                 $dist = $words[1] - $Note_index;
                                 if ($dist == 1)
                                 {
@@ -375,7 +374,7 @@ class Parser_model extends CI_Model
                                 );
                                 $text_id++;
                                 $nt->txt[] = $data;
-                                var_dump($words);
+                                //var_dump($words);
                             }
                             else
                             {
@@ -644,12 +643,12 @@ class Parser_model extends CI_Model
                         if($current_flag=="1")
                         {
                             $pgr1 = $this->createParagraph($line,$words,$text_id,null,$paragraph_id, "abjad");
-                            var_dump($pgr1);
+                            //var_dump($pgr1);
                         }
                         if($current_flag=="2")
                         {
                             $pgr2= $this->createParagraph($line,$words,null,$pgr1->paragraph_id,$paragraph_id, "abjad");
-                            var_dump($pgr2);
+                            //var_dump($pgr2);
                         }
                         $paragraph_id++;
                         //echo "current_flag = " . $current_flag  . "</br>";
@@ -762,10 +761,10 @@ class Parser_model extends CI_Model
 
                         }
 
-                        echo "current_flag = " . $current_flag  . "</br>";
-                        echo "pre1_flag =" . $pre1_flag . "</br>";
-                        echo "pre2_flag = ". $pre2_flag . "</br>";
-                        echo "pre3_flag = ". $pre3_flag . "</br>";
+                        //echo "current_flag = " . $current_flag  . "</br>";
+                        //echo "pre1_flag =" . $pre1_flag . "</br>";
+                        //echo "pre2_flag = ". $pre2_flag . "</br>";
+                        //echo "pre3_flag = ". $pre3_flag . "</br>";
 
                     }
                 }
@@ -831,13 +830,7 @@ class Parser_model extends CI_Model
             $prt->Part_id = $part_id;
         }
         $parts[] = $prt;
-        if($law1->count_part == 0)
-        {
-            $law1->count_part = 1;
-        }
-        $law1->array_of_part = $parts;
-        $law1->count_part = count($parts);
-        foreach ($parts as  $pa)
+     /*   foreach ($parts as  $pa)
         {
             echo"فصل ". ($pa->num).  "  :  " ;
             echo ($pa->title) . "</br>";
@@ -873,7 +866,7 @@ class Parser_model extends CI_Model
                 }
             }
 
-        }
+        }*/
         //   var_dump($law1);
 
         /* $this->law_model->insert_part_law($parts);*/

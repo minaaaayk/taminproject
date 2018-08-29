@@ -45,8 +45,8 @@ h1, h2, h3, h4, h5, h6
     }
     #main-content
     {
-        padding-right: 35px;
-        padding-left: 35px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
     .nav-item-cool a
     {
@@ -414,13 +414,39 @@ h1, h2, h3, h4, h5, h6
 {
     #main2
     {
-        padding-right: 70px !important;
+        padding-right: 40px !important;
     }
 
 
 
 }
 /*-------------------------------start page------------------------------------------------------------*/
+
+@media(max-width: 768px){
+
+    /* Force table to not be like tables anymore */
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    table
+    {
+        width: 100%;
+        padding: 0% !important;
+    }
+    tr
+    {
+        max-height: 2rem !important;
+    }
+
+    td:not:first-child {
+        max-width: 10% !important;
+    }
+    td:first-of-type,th:first-of-type  {
+        max-width: 20% !important;
+        overflow: hidden;
+    }
+
+
+}
 .parallax1 {
     /* The image used */
     background-image: url('pic/bg01.jpg');

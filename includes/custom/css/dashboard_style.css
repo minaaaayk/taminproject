@@ -420,3 +420,11 @@ a:hover
 {
     padding-bottom: 0px !important;
 }
+
+.iconTBL
+{
+}
+#lawstbl thead th span
+{
+    display: inline-table;
+}

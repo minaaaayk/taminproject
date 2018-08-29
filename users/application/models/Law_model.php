@@ -75,19 +75,44 @@ class Law_model extends CI_Model
         return $data;
     }
 
-    function insert_part_law($parts)
+    function insert_law($law1)
+    {
+        $array = array(
+            'title' =>$law1->title,
+            'type' =>  $law1->type,
+            'Date_tasvib' => $law1->Date_tasvib,
+            'id_marja_tasvib' => $law1->id_marja_tasvib,
+            'Date_eblagh' => $law1->Date_eblagh,
+            'num_eblagh' => $law1->num_eblagh,
+            'Date_enteshar' => $law1->Date_enteshar,
+            'Date_emza' => $law1->Date_emza,
+            'Date_taeid' => $law1->Date_taeid,
+            'status' => $law1->status
+        );
+
+        $this->db->set($array);
+        $this->db->insert('law');
+        $lawID = $this->db->insert_id();
+        $this->insert_part_law($law1->array_of_part, $lawID);
+    }
+
+    function insert_part_law($parts ,$parentID)
     {
         foreach ($parts as $p) {
             $array = array(
                 'Part_id' => $p->Part_id,
-                //'title' => $p->title,
-                //'type' => $p->type_part,
+                'title' => $p->title,
+                'type' => $p->type_part,
                 'num' => $p->num,
                 'parent' => $p->parent,
-                //'blaw_id' => null,
-                //'law_id' => null
+                'blaw_id' => null,
+                'law_id' => null
             );
 
+            if($p->parent == "law")
+                $array['law_id'] = $parentID;
+            else
+                $array['blaw_id'] = $parentID;
             $this->db->set($array);
             $this->db->insert('part');
             $p->Part_id = $this->db->insert_id();
@@ -220,6 +245,37 @@ class Law_model extends CI_Model
         return $array;
     }
 
+    function get_law_table($limit, $start, $st = "", $orderField, $orderDirection)
+    {
+
+        $this->db->select('law.*, marja_tavib.id , marja_tavib.title as marja_tasvib_title, status.*');
+        $this->db->from('law');
+        $this->db->join('marja_tavib', 'marja_tavib.id = law.id_marja_tasvib');
+        $this->db->join('status', 'status.id = law.status');
+        $this->db->like('law.title', $st);
+        $this->db->limit($limit, $start);
+        $this->db->order_by($orderField, $orderDirection);
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+    function count_law_table($st = "", $orderField, $orderDirection)
+    {
+        $query = $this->db->or_like('title', $st)->order_by($orderField, $orderDirection)->get('law');
+        return $query->num_rows();
+    }
+    function gett_all_laws()
+    {
+        $this->db->select("*");
+        $query = $this->db->get('law');
+        $laws = array();
+        foreach ($query->result() as $law)
+        {
+           $laws[] = $law;
+        }
+        return $laws;
+
+    }
     //function get_all_parts_detail($law_id)
     function get_all_parts_detail()
     {

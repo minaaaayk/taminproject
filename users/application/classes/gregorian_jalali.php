@@ -17,6 +17,44 @@ function div($a,$b) {
     return (int) ($a / $b);
 
 }
+
+function check_date($jy, $jm, $jd)
+{
+    $today = date("Y-m-d");
+    $todayArr = explode('-',$today);
+    $todayJalali = gregorian_to_jalali($todayArr[0],$todayArr[1],$todayArr[2],false);
+    if(($jy <= $todayJalali[0]) && ($jy > 1000))
+    {
+        if(($jm <= 12) && ($jm >= 1))
+        {
+            if(($jd <= 31) && ($jd >= 1))
+            {
+                $l_d=($jm==12)?((((($jy%33)%4)-1)==((int)(($jy%33)*0.05)))?30:29):31-(int)($jm/6.5);
+                return($jm>12 or $jd>$l_d or $jm<1 or $jd<1 or $jy<1)?false:true;
+            }
+        }
+    }
+    return false;
+
+}
+
+function date_valid($date){
+    $parts = explode("/", $date);
+    if (count($parts) == 3) {
+        if (is_numeric($parts[0])) {
+            if (is_numeric($parts[1])) {
+                if (is_numeric($parts[2])) {
+                    if (check_date($parts[0], $parts[1], $parts[2]))
+                    {
+                        return TRUE;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
 function gregorian_to_jalali ($g_y, $g_m, $g_d,$str)
 {
     $g_days_in_month = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
