@@ -13,7 +13,6 @@ class Employee extends MY_Controller
     {
         parent::__construct();
         $this->load->model('parser_model');
-
     }
     function index()
     {
@@ -42,7 +41,6 @@ class Employee extends MY_Controller
         }
         else
         {
-
             $result['ok'] = 0;
             $result['title'] = "";
             $result['path'] = "";
@@ -115,7 +113,14 @@ class Employee extends MY_Controller
                 $law1->type = $this->input->post('type');
                 $law1->id_marja_tasvib = $this->input->post('marja');
                 $law1->status = $this->input->post('statuss');
-                $law1->num_eblagh =  $this->input->post('eblagh-num');
+                if($law1->Date_eblagh != null)
+                {
+                    $law1->num_eblagh =  $this->input->post('eblagh-num');
+                }
+                else
+                {
+                    $law1->num_eblagh = null;
+                }
                 $file = $this->input->post('path');
 
 

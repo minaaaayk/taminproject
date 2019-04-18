@@ -11,7 +11,10 @@
             <li>
                 <form class="form-inline" role="search" style="border-top: none; margin: 0px;">
                     <div class="" style="margin: 0px; padding: 0px;">
-                        <input class="form-control mr-sm-2" type="text" placeholder="جست و جو" aria-label="search" style=";" id="search-sidenav">
+                        <input class="form-control mr-sm-2" type="text" placeholder="جست و جو" aria-label="search" style="" id="search_sidenav" name="search_sidenav" onkeyup="ajaxSearch();">
+                        <div id="suggestions" style="display: none;">
+                            <div class="uk-panel uk-panel-scrollable" id="autoSuggestionsList"></div>
+                        </div>
                     </div>
                 </form>
             </li>

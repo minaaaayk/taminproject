@@ -74,7 +74,7 @@ class Law_model extends CI_Model
 
         return $data;
     }
-
+    /*----------------------------------insert---------------------------------------------*/
     function insert_law($law1)
     {
         $array = array(
@@ -95,7 +95,6 @@ class Law_model extends CI_Model
         $lawID = $this->db->insert_id();
         $this->insert_part_law($law1->array_of_part, $lawID);
     }
-
     function insert_part_law($parts ,$parentID)
     {
         foreach ($parts as $p) {
@@ -118,7 +117,6 @@ class Law_model extends CI_Model
             $p->Part_id = $this->db->insert_id();
             foreach ($p->array_of_article as $article)
             {
-
                 $artc= array(
                     'A_id' => $article->A_id,
                     'num' => $article->num,
@@ -141,7 +139,6 @@ class Law_model extends CI_Model
 
                 foreach ($article->array_of_Note as $note)
                 {
-
                     $nt= array(
                         'N_id' => $note->N_id,
                         'num' => $note->num,
@@ -171,7 +168,6 @@ class Law_model extends CI_Model
             }
         }
     }
-
     function insert_text($data)
     {
         foreach ($data->txt as $txt)
@@ -214,6 +210,92 @@ class Law_model extends CI_Model
         }
     }
 
+    /*----------------------------------delete---------------------------------------------*/
+    function delete_law($lawID)
+    {
+        $this->delete_part_law($lawID);
+        $this->db->where('Law_id', $lawID);
+        $this->db->delete('law');
+    }
+    function delete_part_law($lawID)
+    {
+        $this->db->select("*");
+        $this->db->where('law_id', $lawID);
+        $query = $this->db->get('part');
+        foreach ($query->result() as $part)
+        {
+            $this->delete_article_of_part($part->Part_id);
+        }
+        $this->db->where('law_id', $lawID);
+        $this->db->delete('part');
+    }
+    function delete_article_of_part($partID)
+    {
+        $this->db->select("*");
+        $this->db->where('part_id', $partID);
+        $query = $this->db->get('aticle');
+        foreach ($query->result() as $article)
+        {
+            $this->delete_notes($article->A_id);
+            $this->delete_all_text_of($article->A_id,1);
+
+        }
+        $this->db->where('part_id', $partID);
+        $this->db->delete('aticle');
+    }
+    function delete_all_text_of($parentID,$type_txt_id)
+    {
+        $this->db->select("*");
+        $this->db->where('parent_id', $parentID);//article or note....
+        $this->db->where('type_txt_id', $type_txt_id);
+        $query = $this->db->get('middle_txt');
+        foreach ($query->result() as $Middletext)
+        {
+            $this->delete_text($Middletext->txt_id);
+        }
+        $this->db->where('parent_id', $parentID);//article or note....
+        $this->db->where('type_txt_id', $type_txt_id);
+        $this->db->delete('middle_txt');
+    }
+    function delete_text($parentID)
+    {
+        $this->db->select("*");
+        $this->db->where('parent_txt_id', $parentID);
+        $query = $this->db->get('text');
+        foreach ($query->result() as $text)
+        {
+            $this->delete_paragraph($text->id);
+        }
+        $this->db->where('parent_txt_id', $parentID);
+        $this->db->delete('text');
+    }
+    function delete_paragraph($text_id)
+    {
+        $this->db->select("*");
+        $this->db->where('parent_id_txt',$text_id);
+        $query = $this->db->get('paragraph');
+        foreach ($query->result() as $paragraph1)
+        {
+            $this->db->where('parent_id_paragraph', $paragraph1->paragraph_id);
+            $this->db->delete('paragraph');
+        }
+        $this->db->where('parent_id_txt', $text_id);
+        $this->db->delete('paragraph');
+    }
+    function delete_notes($parentID)
+    {
+        $this->db->select("*");
+        $this->db->where('article_id', $parentID);
+        $query = $this->db->get('note');
+        foreach ($query->result() as $note)
+        {
+            $this->delete_all_text_of($note->N_id,2);
+        }
+        $this->db->where('article_id', $parentID);
+        $this->db->delete('note');
+    }
+
+    /*----------------------------------retrive---------------------------------------------*/
     function get_marja_tasvib($priority = true)
     {
         $query= "";
@@ -244,24 +326,29 @@ class Law_model extends CI_Model
         }
         return $array;
     }
-
-    function get_law_table($limit, $start, $st = "", $orderField, $orderDirection)
+    function get_law_title($search_data)
     {
-
+        $this->db->select('title, Law_id');
+        $this->db->like('title', $search_data);
+        return $this->db->get('law', 10)->result();
+    }
+    function get_law_table($limit, $start, $st = "", $orderField, $orderDirection,$type="")
+    {
         $this->db->select('law.*, marja_tavib.id , marja_tavib.title as marja_tasvib_title, status.*');
         $this->db->from('law');
         $this->db->join('marja_tavib', 'marja_tavib.id = law.id_marja_tasvib');
         $this->db->join('status', 'status.id = law.status');
         $this->db->like('law.title', $st);
+        $this->db->like('law.type', $type);
         $this->db->limit($limit, $start);
         $this->db->order_by($orderField, $orderDirection);
         $query = $this->db->get();
         return $query->result();
 
     }
-    function count_law_table($st = "", $orderField, $orderDirection)
+    function count_law_table($st = "", $orderField, $orderDirection,$type="")
     {
-        $query = $this->db->or_like('title', $st)->order_by($orderField, $orderDirection)->get('law');
+        $query = $this->db->like('title', $st)->like('type', $type)->order_by($orderField, $orderDirection)->get('law');
         return $query->num_rows();
     }
     function gett_all_laws()
@@ -274,7 +361,133 @@ class Law_model extends CI_Model
            $laws[] = $law;
         }
         return $laws;
+    }
+    function get_law_by_id($lawID)
+    {
+        $this->db->select('law.*, marja_tavib.id , marja_tavib.title as marja_tasvib_title, status.*');
+        $this->db->from('law');
+        $this->db->where('law.Law_id', $lawID);
+        $this->db->join('marja_tavib', 'marja_tavib.id = law.id_marja_tasvib');
+        $this->db->join('status', 'status.id = law.status');
+        $this->db->where('Law_id', $lawID);
+        return $this->db->get()->result();
+    }
 
+    function get_law_by_id_pure($lawID)
+    {
+        $this->db->select('*');
+        $this->db->from('law');
+        $this->db->where('Law_id', $lawID);
+        return $this->db->get()->result();
+    }
+    function count_parts_of($lawID=0,$type="")
+    {
+        $query = $this->db->where('law_id', $lawID)->where('parent', $type)->get('part');
+        return $query->num_rows();
+    }
+    function get_part_id_of($lawID,$type="")
+    {
+        $id = 0;
+        $query = $this->db->where('law_id', $lawID)->where('parent', $type)->get('part');
+        foreach ($query->result() as $part)
+        {
+            $id = $part->Part_id;
+        }
+        return $id;
+    }
+    function get_all_part_id_of($lawID,$type="")
+    {
+        $id = array();
+        $query = $this->db->where('law_id', $lawID->where('parent', $type))->get('part');
+        foreach ($query->result() as $part)
+        {
+            $id[] = $part->Part_id;
+        }
+        return $id;
+    }
+    function get_one_part_by_id($partID,$type="")
+    {
+        $this->db->select('*');
+        $this->db->from('part');
+        $this->db->where('Part_id', $partID);
+        $this->db->where('parent', $type);
+        return $this->db->get()->result();
+    }
+    function get_article_of_part_table($partID,$limit, $start, $st = "")
+    {
+        $this->db->select("*");
+        $this->db->from('aticle');
+        $this->db->where('part_id',$partID);
+        $query = $this->db->get();
+
+        $array_of_article = array();
+        foreach($query->result() as $article)
+        {
+            $a = array();
+            $this->db->select("*");
+            $this->db->from('middle_txt');
+            $this->db->where('parent_id',$article->A_id);
+            $this->db->where('type_txt_id',1);
+            $query = $this->db->get();
+            $data = "";
+            foreach ($query->result() as $text)
+            {
+                $this->db->select("*");
+                $this->db->from('text');
+                $this->db->where('parent_txt_id',$text->txt_id);
+                $this->db->like('text', $st);
+                $query = $this->db->get();
+                foreach ($query->result_array() as $t)
+                {
+                    $data .= $t['text'];
+                }
+            }
+            if($data != "")
+            {
+                $a['article_id'] = $article->A_id;
+                $a['num'] = $article->num;
+                $a['text'] = $data;
+                $array_of_article[] = $a;
+            }
+        }
+        return array_slice($array_of_article,$start,$limit);
+    }
+    function count_article_of_part_table($partID, $st = "")
+    {
+        $this->db->select("*");
+        $this->db->from('aticle');
+        $this->db->where('part_id',$partID);
+        $query = $this->db->get();
+
+        $array_of_article = array();
+        foreach($query->result() as $article)
+        {
+            $a = array();
+            $this->db->select("*");
+            $this->db->from('middle_txt');
+            $this->db->where('parent_id',$article->A_id);
+            $this->db->where('type_txt_id',1);
+            $query = $this->db->get();
+            $data = "";
+            foreach ($query->result() as $text)
+            {
+                $this->db->select("*");
+                $this->db->from('text');
+                $this->db->where('parent_txt_id',$text->txt_id);
+                $this->db->like('text', $st);
+                $query = $this->db->get();
+                foreach ($query->result_array() as $t)
+                {
+                    $data .= $t['text'];
+                }
+            }
+            if($text != "")
+            {
+                $a['article_id'] = $article->A_id;
+                $array_of_article[] = $a;
+            }
+        }
+        return count($array_of_article);
     }
     //function get_all_parts_detail($law_id)
     function get_all_parts_detail()
@@ -300,7 +513,25 @@ class Law_model extends CI_Model
         }
         return $array_of_part;
     }
+    function get_One_Article_detail($article_id)
+    {
+        $this->db->select("*");
+        $this->db->from('aticle');
+        $this->db->where('A_id',$article_id);
+        $query = $this->db->get();
 
+        $a = new Article();
+        foreach($query->result() as $row)
+        {
+            $a = new Article();
+            $a->A_id = $row->A_id;
+            $a->num = $row->num;
+            $txt=$this->get_all_text($a->A_id, 1);
+            $a->setText($txt);
+            $a->array_of_Note = $this->get_all_note_detail($a->A_id);
+        }
+        return $a;
+    }
     function get_all_Article_detail($part_id)
     {
         $this->db->select("*");
@@ -321,7 +552,6 @@ class Law_model extends CI_Model
         }
         return $array_of_article;
     }
-
     function get_all_note_detail($article_id)
     {
         $this->db->select("*");
@@ -343,7 +573,6 @@ class Law_model extends CI_Model
         }
         return $array_of_note;
     }
-
     function get_all_text($parent_id, $type_txt)
     {
         $this->db->select("*");
@@ -363,7 +592,6 @@ class Law_model extends CI_Model
         }
         return $t;
     }
-
     function get_txt($parent_id)
     {
         $row = array();

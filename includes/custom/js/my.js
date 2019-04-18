@@ -412,9 +412,9 @@ $('document').ready(function () {
     });
 
     $("#add-user #passconf").keyup(checkPasswordMatch);
-
-
-    cutttable(40);
+    $( "#search_sidenav" ).parent( ".form-group" ).css( "margin-right", "0px" );
+    cutttable(".art-tbl",40);
+    cutttable("#articletbl .uk-button",200);
 
 
 
@@ -422,8 +422,8 @@ $('document').ready(function () {
 });
 //---end-ready-----------------------------------------------------------------------
 
-function cutttable(num) {
-    $( ".art-tbl" ).each(function() {
+function cutttable(selector,num) {
+    $(selector).each(function() {
         var str = $(this).html();
         var res = str.substr(0, num);
         $(this).html(res + "...");
@@ -533,8 +533,8 @@ function CheckDate(elm) {
 }
 function somsom(elm){
 
-    $('.myprogress').css('display', 'block');
-    $('.myprogress').css('width', '0');
+    $('.prog').css('display', 'flex');
+    $('#js-progressbar').attr('value', '10');
     $('.msg').text('');
     var myfile = $(elm).val();
     var formData = new FormData();
@@ -556,7 +556,8 @@ function somsom(elm){
                     var percentComplete = evt.loaded / evt.total;
                     percentComplete = parseInt(percentComplete * 100);
                     /*$('.myprogress').text(percentComplete + '%');*/
-                    $('.myprogress').css('width', percentComplete + '%');
+                    $('#js-progressbar').attr('value', percentComplete);
+
                 }
             }, false);
             return xhr;
@@ -568,6 +569,7 @@ function somsom(elm){
             if(duce.status > 0)
             {
                 // $('#FN').text(duce.filename);
+                $('.prog').css('display', 'none');
                 $('.file-name-law').val(duce.filename);
                 $('.file-path').val(duce.path);
                 $(".file-name-law").removeClass("input-error");
@@ -746,14 +748,101 @@ function getDate() {
 $(".collapsible-header").on('click',function () {
     $(this).next().slideToggle( "slow" );
 });
+
+//------------------------------------search on navbar---------------------------------
+function ajaxSearch()
+{
+    var input_data = $('#search_sidenav').val();
+
+    if (input_data.length === 0)
+    {
+        $('#suggestions').hide();
+    }
+    else
+    {
+
+        var post_data = {
+            'search_sidenav': input_data,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+        };
+
+        $.ajax({
+            type: "POST",
+            url: searchNavURL,
+            data: post_data,
+            success: function (data) {
+                // return success
+                if (data.length > 0) {
+                    var result = jQuery.parseJSON(data);
+                    $('#suggestions').show();
+                    $('#autoSuggestionsList').addClass('auto_list');
+                    //$('#autoSuggestionsList').html(data);
+
+                    if(result.ok == 1)
+                    {
+                        $('#autoSuggestionsList').html("");
+                        $.each(result.laws, function(i, item) {
+                            $('#autoSuggestionsList').append("<li><a data-law-search='"+item.Law_id + "' href='#'>" +  item.title + "</a></li>");
+                        });
+                    }
+                    else
+                    {
+                        $('#autoSuggestionsList').html("<li> <em> یافت نشد </em> </li>");
+                    }
+                    var w = $('body').width();
+                    if (w<500)
+                    {
+                        $('#autoSuggestionsList').addClass('uk-height-medium');
+                    }
+                    else
+                    {
+                        if (w<750)
+                        {
+                            $('#autoSuggestionsList').addClass('uk-height-larg');
+                        }
+                        else
+                        {
+                            $('#autoSuggestionsList').removeClass('uk-panel');
+                            $('#autoSuggestionsList').removeClass('uk-panel uk-panel-scrollable');
+
+                        }
+                    }
+
+                }
+            }
+        });
+
+    }
+}
 //--------------------------------------show law---------------------------------------
 var sendRequest = function(){
     var searchKey = $('#searchKey').val();
     var limitRows = $('#limitRows').val();
-    window.location.href = showAllLawURL + '?query='+searchKey+'&limitRows='+limitRows+'&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
+    var typelaw = $('#typelaw').val();
+    window.location.href = showAllLawURL + '?query='+searchKey+'&limitRows='+limitRows+'&orderField='+curOrderField+'&orderDirection='+curOrderDirection+'&typelaw='+typelaw;
 }
 
+var sendRequest2 = function () {
+    var searchKey = $('#searchKey').val();
+    var limitRows = $('#limitRows').val();
+    var partId = $('#articletbl').data('part-id');;
+    window.location.href = showOnePartURL + '?query='+searchKey+'&limitRows='+limitRows+'&partId='+partId;
 
+}
+function reverseDate(str) {
+    if((str != null) && (str != ""))
+    {
+        var date = str.split("-");
+        var y = date[0];
+        var m = date[1];
+        var d = date[2];
+        return y + "/" + m + "/" + d;
+    }
+    else
+    {
+        return "";
+    }
+}
 var getNamedParameter = function (key) {
     if (key == undefined) return false;
 
@@ -786,7 +875,6 @@ var remove_value = function (value, remove) {
     return value;
 };
 
-
 var curOrderField, curOrderDirection;
 $('[data-action="sort"]').on('click', function(e){
     curOrderField = $(this).data('title');
@@ -794,9 +882,9 @@ $('[data-action="sort"]').on('click', function(e){
     sendRequest();
 });
 
-
 $('#searchKey').val(decodeURIComponent(getNamedParameter('query')||""));
 $('#limitRows option[value="'+getNamedParameter('limitRows')+'"]').attr('selected', true);
+$('#typelaw option[value="'+selectType+'"]').attr('selected','selected');
 
 var curOrderField = getNamedParameter('orderField')||"";
 var curOrderDirection = getNamedParameter('orderDirection')||"";
@@ -806,3 +894,73 @@ if(curOrderDirection=="ASC"){
 }else{
     currentSort.attr('data-direction', "ASC").find('span.iconTBL').attr('uk-icon', "triangle-down");
 }
+
+
+
+$('#lawstbl [data-action="detail"]').on('click', function(e){
+    var parent = $(this).parent('tr').data('selection');
+    //window.location.href = showOneLawDetailURL + '?law_id='+parent;
+    console.log("detail:"+parent);
+    var post_data = {
+        'law_id': parent
+    };
+    $.ajax({
+        type: "POST",
+        url: showOneLawDetailURL,
+        data: post_data,
+        success: function (res) {
+            var result = jQuery.parseJSON(res);
+            if(result.ok == 1)
+            {
+                console.log(result.law);
+                $("#lawDetail table #d-title").text(result.law.title);
+                $("#lawDetail table #d-type").text(result.law.type);
+                $("#lawDetail table #d-tasvib-date").text(reverseDate(result.law.Date_tasvib));
+                $("#lawDetail table #d-marja-tasvib").text(result.law.marja_tasvib_title);
+                $("#lawDetail table #d-eblagh-date").text(reverseDate(result.law.Date_eblagh));
+                $("#lawDetail table #d-eblagh-num").text(result.law.num_eblagh);
+                $("#lawDetail table #d-enteshar-date").text(reverseDate(result.law.Date_enteshar));
+                $("#lawDetail table #d-emza-date").text(reverseDate(result.law.Date_emza));
+                $("#lawDetail table #d-taeid-date").text(reverseDate(result.law.Date_taeid));
+                $("#lawDetail table #d-status").text(result.law.status_title);
+            }
+            else
+            {
+                $("#lawDetail table").html("خطا");
+            }
+            UIkit.modal("#lawDetail").show();
+
+        }
+    });
+});
+
+$('#lawstbl [data-action="edit"]').on('click', function(e){
+    var parent = $(this).parent('tr').data('selection');
+    window.location.href = editOneLawURL + '?law_id='+parent;
+});
+
+
+$('#lawstbl [data-action="delete"]').on('click', function(e){
+    var parent = $(this).parent('tr').data('selection');
+    //window.location.href = deleteOneLawURL + '?law_id='+parent;
+    var post_data = {
+        'law_id': parent
+    };
+    $.ajax({
+        type: "POST",
+        url: deleteOneLawURL,
+        data: post_data,
+        success: function (res) {
+        }
+    });
+});
+$('#lawstbl [data-action="show"]').on('click', function(e){
+    var parent = $(this).parent('tr').data('selection');
+    window.location.href = showOneLawURL + '?law_id='+parent;
+});
+
+$('#articletbl [data-action="show"]').on('click', function(e){
+    var parent = $(this).parent('tr').data('selection');
+    console.log(parent);
+    window.location.href = showOneArticleURL + '?article_id='+parent;
+});

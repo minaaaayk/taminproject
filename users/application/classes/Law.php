@@ -86,6 +86,7 @@ class Note extends Text
     public $N_id;
     public $num;
     public $paragraph_flag = false;
+    public $print_flag = false;
     public $parent_paragraph_id;
     public function __construct()
     {

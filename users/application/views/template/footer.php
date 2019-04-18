@@ -39,6 +39,14 @@
     var dateJS = '<?php echo date("Y-m-d", time());?>';
     var dateConvertURL = "<?php echo base_url(); ?>users/general/convert_to_jalali/";
     var showAllLawURL = '<?=base_url()?>users/general/show_law/';
+    var showOneLawURL = '<?=base_url()?>users/general/show_one_law/';
+    var showOneLawDetailURL = '<?=base_url()?>users/general/one_law_detail/';
+    var showOnePartURL = '<?=base_url()?>users/general/show_one_part/';
+    var showOneArticleURL = '<?=base_url()?>users/general/show_one_article/';
+    var editOneLawURL = '<?=base_url()?>users/general/edit_one_law/';
+    var deleteOneLawURL = '<?=base_url()?>users/general/delete_one_law/';
+    var searchNavURL = '<?=base_url()?>users/general/search_nav/';
+    var selectType = "<?php if(isset($typelaw)){echo $typelaw;}else{echo "";}?>";
 </script>
 <script  type="text/javascript" src="<?php echo base_url();?>includes/custom/js/my.js"></script>
 

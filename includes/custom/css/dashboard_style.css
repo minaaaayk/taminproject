@@ -48,45 +48,47 @@ a:hover
     background: none !important;
 }
 
-#search-sidenav
+#search_sidenav
 {
     color: white;
     padding: 0px;
     background-image:none;
     border-bottom: 1px solid white;
+    margin-right: 0px !important;
+    padding-right: 10px;
 }
 
-#search-sidenav::-webkit-input-placeholder {
+#search_sidenav::-webkit-input-placeholder {
     color: white !important;
 }
 
-#search-sidenav:-moz-placeholder { /* Firefox 18- */
+#search_sidenav:-moz-placeholder { /* Firefox 18- */
     color: white !important;
 }
 
-#search-sidenav::-moz-placeholder {  /* Firefox 19+ */
+#search_sidenav::-moz-placeholder {  /* Firefox 19+ */
     color: white !important;
 }
 
-#search-sidenav:-ms-input-placeholder {
+#search_sidenav:-ms-input-placeholder {
     color: white !important;
 }
-.form-group.is-focused #search-sidenav::-webkit-input-placeholder {
+.form-group.is-focused #search_sidenav::-webkit-input-placeholder {
     color: rgba(225,241,255,0.7) !important;
 }
 
-.form-group.is-focused #search-sidenav:-moz-placeholder { /* Firefox 18- */
+.form-group.is-focused #search_sidenav:-moz-placeholder { /* Firefox 18- */
     color: rgba(225,241,255,0.7) !important;
 }
 
-.form-group.is-focused #search-sidenav::-moz-placeholder {  /* Firefox 19+ */
+.form-group.is-focused #search_sidenav::-moz-placeholder {  /* Firefox 19+ */
     color: rgba(225,241,255,0.7) !important;
 }
 
-.form-group.is-focused #search-sidenav:-ms-input-placeholder {
+.form-group.is-focused #search_sidenav:-ms-input-placeholder {
     color: rgba(225,241,255,0.7) !important;
 }
-.form-group.is-focused #search-sidenav
+.form-group.is-focused #search_sidenav
 {
     background:none !important;
     border-bottom:1px solid rgba(110,206,255,0.7) !important;
@@ -120,7 +122,10 @@ a:hover
 }
 
 .nav-item-cool .collapsible-body > ul li > a{
-    padding-right: 40px !important;
+    margin-right: 30px !important;
+    padding-right: 10px !important;
+    color: rgba(247,247,247,0.93) !important;
+    border-right: .7px solid rgba(240, 240, 240, 0.51) !important;
 }
 .nav-item-cool  > a{
     padding-right: 20px !important;
@@ -129,15 +134,17 @@ a:hover
 #slidenav
 {
     padding-right: 0px !important;
+    overflow-y: auto !important;
 }
 
 .nav-item-cool .collapsible-body > ul li a:hover{
     color: white !important;
     text-decoration: none !important;
+    background-color: rgba(207,72,88,0.73) !important;
 }
 .nav-item-cool .collapsible-body > ul li:hover
 {
-    background-color: #cf4858;
+
 }
 .nav-item-cool > a:hover
 {
@@ -424,7 +431,42 @@ a:hover
 .iconTBL
 {
 }
+#lawstbl.table th,#lawstbl.table td,#articletbl.table th,#articletbl.table td,#articletbl.table .uk-button-text
+{
+    text-align: right;
+}
+#lawstbl
+{
+    overflow: auto !important;
+}
 #lawstbl thead th span
 {
     display: inline-table;
+}
+td[data-action="show"]  .uk-button-text{
+    color: #1e4977 !important;
+    font-weight: 400 !important;
+}
+
+td[data-action="show"] .uk-button-text::before
+{
+    border-bottom: 1px solid #1e4977 !important;
+}
+.auto_list
+{
+    width: 240px;
+    position: absolute;
+    margin: auto;
+    background: none repeat scroll 0 0 rgba(255,255,255,0.99) !important;
+    z-index: 10000;
+    padding: 10px;
+    -webkit-box-shadow: 11px 8px 25px -4px rgba(0,0,0,0.72);
+    box-shadow: 11px 8px 25px -4px rgba(0,0,0,0.72);
+}
+
+#autoSuggestionsList > li {
+    border-bottom: 1px solid #E3E3E3;
+    list-style: none outside none;
+    /*padding: 3px 15px 3px 15px;
+    */text-align: right;
 }

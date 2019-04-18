@@ -55,14 +55,14 @@
                     <div class="row prog" style="display: none;">
                         <div class="col-md-2">
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="form-group col-xl-12">
-                                <div class="progress" >
-                                    <div class="progress-bar myprogress" role="progressbar" style="width:0%"></div>
+                                <div class="">
+                                    <progress  id="js-progressbar" class="uk-progress"  value="" max="100"></progress>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                         </div>
                     </div>
                 </div>
@@ -225,12 +225,11 @@
                                         <option value="1">اساسی</option>
                                         <option value="2">ولائي</option>
                                         <option value="3">حكومتي</option>
-                                        <option value="4">اساسی</option>
-                                        <option value="5">عادي – حكومتي</option>
-                                        <option value="6">عادی</option>
-                                        <option value="7">اساسنامه قانوني</option>
-                                        <option value="8">آيين نامه قانوني</option>
-                                        <option value="9">احکام و نظام نامه ها</option>
+                                        <option value="4">عادي – حكومتي</option>
+                                        <option value="5">عادی</option>
+                                        <option value="6">اساسنامه قانوني</option>
+                                        <option value="7">آيين نامه قانوني</option>
+                                        <option value="8">احکام و نظام نامه ها</option>
                                     </select>
                                 </div>
                             </div>
